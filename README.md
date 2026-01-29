@@ -1,54 +1,44 @@
-# HW 3: Prim's algorithm
+# HW3 – Prim’s Algorithm (Minimum Spanning Tree)
 
-In this assignment, you'll implement Prim's algorithm, a non-trivial greedy algorithm used to construct minimum spanning trees. 
+J. Carlos Gomez
 
-## Tasks
+This project implements **Prim’s algorithm** to construct a **Minimum Spanning Tree (MST)** from an undirected weighted graph represented as an adjacency matrix.  
 
-### Coding
+Additional unit tests were added to verify correctness and robustness.
 
-* [TODO] Complete the `construct_mst` method found in `mst/graph.py`. All necessary modules have already been imported. You should not rely on any other dependencies (e.g. networkx). 
 
-### Development
+## Implementation Details
 
-* [TODO] Add more assertions to the `check_mst` function in `test/test_mst.py`.
-* [TODO] Write at least one more unit test (in the `test_mst.py` file) for your `construct_mst` implementation. (Two unit tests have already been provided: the first operates on a small graph of four nodes, and the second on a larger graph of 140 single cells, projected onto a lower dimensional subspace.)
-* [Optional] Make your package `pip` installable. (Refer to prevous assignments for more in-depth information.)
-* [Optional] Automate testing with `pytest` and GitHub Actions, and add a status badge to this README file. (Refer to previous assignments for more in-depth information.)
+### Prim’s Algorithm
+- Implemented in `Graph.construct_mst()` using a priority queue (`heapq`).
+- Produces an adjacency matrix representation of the MST.
+- Assumes the input graph is undirected and connected.
 
-## Getting started
+The MST produced:
+- Has exactly `n − 1` edges
+- Is connected
+- Contains no cycles
+- Uses only edges present in the original graph
+- Minimizes total edge weight
 
-Fork this repository to your own GitHub account. Work on the codebase locally and commit changes to your forked repository. 
 
-You will need following packages:
 
-- [numpy](https://numpy.org/)
-- [scikit-learn](https://scikit-learn.org/)
-- [pytest](https://docs.pytest.org/en/7.2.x/)
+## Unit Tests
 
-We also strongly recommend you use the built-in [heapq](https://docs.python.org/3/library/heapq.html) module.
+### Provided Tests
+- Small graph test (`small.csv`)
+- Single-cell distance graph test (Slingshot dataset)
 
-## Completing the assignment
+### Student-Added Test
+- Custom graph with multiple valid MSTs (tie-handling test)
 
-Push your code to GitHub with passing unit tests, and submit a link to your repository through this [google form link]([https://forms.gle/guyuWE6hsTiz34WTA](https://docs.google.com/forms/d/e/1FAIpQLSdA3xmIjLZ5_eq9SvC3DHczAdYr6tuRGCHwmFTslspwzboI8A/viewform))
+### Enhanced MST Validation
+The `check_mst()` function checks:
+- Correct total weight
+- Symmetry of adjacency matrices
+- No self-loops
+- Exactly `n − 1` edges
+- All edges exist in the original graph
+- Connectivity
+- No cycles (Union-Find)
 
-## Grading
-
-### Code (6 points)
-
-* Minimum spanning tree construction works correctly (6)
-    * Correct implementation of Prim's algorithm (4)
-    * Produces expected output on small graph (1) 
-    * Produces expected output on single cell data (1) 
-
-### Unit tests (3 points)
-
-* Complete function "check_mst" (1)
-* Write at least two unit tests for MST construction (2)
-
-### Style (1 points)
-
-* Readable code with clear comments and method descriptions (1)
-
-### Extra credit (0.5)
-
-* Github actions/workflow (0.5)
